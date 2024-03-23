@@ -62,17 +62,34 @@ export const EditUser = ({ show, rowData, handleClose }) => {
     event.preventDefault();
     const form = event.currentTarget;
 
-    console.log(formData);
-
     if (form.checkValidity() === false) {
       event.stopPropagation();
     }
     setValidated(true);
 
     if (form.checkValidity()) {
-      updateUser(formData);
+      updateCard(formData);
       handleReset();
       handleHide();
+    }
+  };
+
+  const updateCard = async (data) => {
+    try {
+      const response = await fetch(
+        `http://localhost/api-servilex/public/api/cards/${data.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      const result = await response.json();
+      updateUser(result);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 

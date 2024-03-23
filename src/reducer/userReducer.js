@@ -2,32 +2,19 @@ import { types } from "../types/types";
 
 export const userInitialState = {
   users: [
-    {
-      id: "1",
-      name: "Edgard",
-      lastname: "Lozano Ramos",
-      email: "edgard@gmail.com",
-      adress: "av las peñas",
-      city: "Arequipa",
-      phone: "+51983673123",
-      number_card: "123324211111",
-      expiration_month: "12",
-      expiration_year: "2025",
-      security_code: "1111",
-    },
-    {
-      id: "2",
-      name: "Marina Etiane",
-      lastname: "Flores Gallegos",
-      email: "marina@gmail.com",
-      adress: "av las peñas",
-      city: "Arequipa",
-      phone: "+51983673123",
-      number_card: "23423423424234",
-      expiration_month: "12",
-      expiration_year: "2024",
-      security_code: "1111",
-    },
+    // {
+    //   id: "1",
+    //   name: "Edgard",
+    //   lastname: "Lozano Ramos",
+    //   email: "edgard@gmail.com",
+    //   adress: "av las peñas",
+    //   city: "Arequipa",
+    //   phone: "+51983673123",
+    //   number_card: "123324211111",
+    //   expiration_month: "12",
+    //   expiration_year: "2025",
+    //   security_code: "1111",
+    // },
   ],
 };
 
@@ -36,7 +23,7 @@ export const userReducer = (state = {}, action) => {
     case types.CREATE:
       return {
         ...state,
-        users: [action.payload, ...state.users],
+        users: [...state.users, action.payload],
       };
     case types.UPDATE:
       return {
@@ -53,6 +40,11 @@ export const userReducer = (state = {}, action) => {
       return {
         ...state,
         users: state.users.filter((user) => user.id !== action.payload.id),
+      };
+    case types.INDEX:
+      return {
+        ...state,
+        users: action.payload.users,
       };
     default:
       return state;

@@ -28,9 +28,22 @@ export const UserProvider = ({ children }) => {
     });
   };
 
+  const setUsers = (users) => {
+    dispatch({
+      type: types.INDEX,
+      payload: { users },
+    });
+  };
+
   return (
     <UserContext.Provider
-      value={{ users: state.users, createUser, updateUser, deleteUser }}
+      value={{
+        users: state.users,
+        createUser,
+        updateUser,
+        deleteUser,
+        setUsers,
+      }}
     >
       {children}
     </UserContext.Provider>

@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { UserContext } from "../context/UserContext";
 import { EditUser } from "./EditUser";
 import { ShowUser } from "./ShowUser";
 
 export const ListUsers = () => {
-  const { users, deleteUser } = useContext(UserContext);
+  const { users, deleteUser, setUsers } = useContext(UserContext);
 
   const [showModal, setShowModal] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
@@ -32,9 +32,50 @@ export const ListUsers = () => {
     setShowModalEdit(true);
   };
 
-  const handleDelete = (id) => {
-    deleteUser(id);
+  const deleteCard = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost/api-servilex/public/api/cards/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      await response.json();
+      deleteUser(id);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+
+  const handleDelete = (id) => {
+    deleteCard(id);
+  };
+
+  const getListCards = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost/api-servilex/public/api/cards",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const result = await response.json();
+      setUsers(result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    getListCards();
+  }, []);
 
   return (
     <>

@@ -11,7 +11,6 @@ export const CreateUser = () => {
   const [show, setShow] = useState(false);
 
   const [formValues, handleInputChange, handleReset] = useForm({
-    id: Date.now().toString(),
     name: "",
     lastname: "",
     email: "",
@@ -55,9 +54,28 @@ export const CreateUser = () => {
     setValidated(true);
 
     if (form.checkValidity()) {
-      createUser(formValues);
+      postCard(formValues);
       handleReset();
       handleClose();
+    }
+  };
+
+  const postCard = async (data) => {
+    try {
+      const response = await fetch(
+        "http://localhost/api-servilex/public/api/cards",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      const result = await response.json();
+      createUser(result);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
