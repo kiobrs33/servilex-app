@@ -54,6 +54,7 @@ export const EditUser = ({ show, rowData, handleClose }) => {
   } = formData;
 
   const handleHide = () => {
+    handleReset();
     setValidated(false);
     handleClose();
   };
@@ -69,7 +70,6 @@ export const EditUser = ({ show, rowData, handleClose }) => {
 
     if (form.checkValidity()) {
       updateCard(formData);
-      handleReset();
       handleHide();
     }
   };
@@ -110,6 +110,8 @@ export const EditUser = ({ show, rowData, handleClose }) => {
               name="number_card"
               defaultValue={number_card}
               onChange={handleChange}
+              minLength={16}
+              maxLength={16}
               size="sm"
               required
             />

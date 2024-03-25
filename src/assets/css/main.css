@@ -1,0 +1,42 @@
+.card-credit {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  border-radius: 15px;
+  padding: 20px;
+  height: 250px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-credit__chip {
+  display: flex;
+  justify-content: start;
+}
+
+.card-credit__chip-image {
+  height: 60px;
+}
+
+.card-credit__number {
+  margin: 20px 0;
+  color: #fff;
+}
+
+.card-credit__number > h1 {
+  font-size: 30px;
+}
+
+.card-credit__info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-credit__name {
+  color: #fff;
+}
+
+.card-credit__expiration-date {
+  color: #fff;
+  font-size: 12px;
+}

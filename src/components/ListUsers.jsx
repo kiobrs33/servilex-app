@@ -3,12 +3,14 @@ import { Table } from "react-bootstrap";
 import { UserContext } from "../context/UserContext";
 import { EditUser } from "./EditUser";
 import { ShowUser } from "./ShowUser";
+import { ShowCard } from "./ShowCard";
 
 export const ListUsers = () => {
   const { users, deleteUser, setUsers } = useContext(UserContext);
 
   const [showModal, setShowModal] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalCard, setShowModalCard] = useState(false);
 
   const [rowData, setRowData] = useState({});
 
@@ -22,6 +24,11 @@ export const ListUsers = () => {
     setShowModalEdit(false);
   };
 
+  const handleCloseModalCard = () => {
+    setRowData({});
+    setShowModalCard(false);
+  };
+
   const handleShowModal = (user) => {
     setRowData(user);
     setShowModal(true);
@@ -30,6 +37,11 @@ export const ListUsers = () => {
   const handleShowModalEdit = (user) => {
     setRowData(user);
     setShowModalEdit(true);
+  };
+
+  const handleShowModalCard = (user) => {
+    setRowData(user);
+    setShowModalCard(true);
   };
 
   const deleteCard = async (id) => {
@@ -91,6 +103,12 @@ export const ListUsers = () => {
         handleClose={handleCloseModalEdit}
       />
 
+      <ShowCard
+        show={showModalCard}
+        rowData={rowData}
+        handleClose={handleCloseModalCard}
+      />
+
       <Table className="my-4 table-striped">
         <thead>
           <tr>
@@ -114,11 +132,17 @@ export const ListUsers = () => {
                 <td>{user.lastname}</td>
                 <td>
                   <span className="badge text-bg-secondary">
-                    <i className="fa-regular fa-credit-card"></i>{" "}
                     {user.number_card}
                   </span>
                 </td>
                 <td>
+                  <button
+                    type="button"
+                    className="btn btn-dark btn-sm  me-2"
+                    onClick={() => handleShowModalCard(user)}
+                  >
+                    <i className="fa-regular fa-credit-card"></i>
+                  </button>
                   <button
                     type="button"
                     className="btn btn-primary btn-sm  me-2"

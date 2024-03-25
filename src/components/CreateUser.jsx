@@ -39,6 +39,7 @@ export const CreateUser = () => {
   const handleShow = () => setShow(true);
 
   const handleClose = () => {
+    handleReset();
     setValidated(false);
     setShow(false);
   };
@@ -55,7 +56,6 @@ export const CreateUser = () => {
 
     if (form.checkValidity()) {
       postCard(formValues);
-      handleReset();
       handleClose();
     }
   };
@@ -103,6 +103,8 @@ export const CreateUser = () => {
                 name="number_card"
                 value={number_card}
                 onChange={handleInputChange}
+                minLength={16}
+                maxLength={16}
                 size="sm"
                 required
               />
