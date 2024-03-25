@@ -4,6 +4,7 @@ import { UserContext } from "../context/UserContext";
 import { EditUser } from "./EditUser";
 import { ShowUser } from "./ShowUser";
 import { ShowCard } from "./ShowCard";
+import { addSpaceText } from "../utilities/add-espace-text";
 
 export const ListUsers = () => {
   const { users, deleteUser, setUsers } = useContext(UserContext);
@@ -47,7 +48,7 @@ export const ListUsers = () => {
   const deleteCard = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost/api-servilex/public/api/cards/${id}`,
+        `${import.meta.env.VITE_URL_API}/api-servilex/public/api/cards/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -69,7 +70,7 @@ export const ListUsers = () => {
   const getListCards = async () => {
     try {
       const response = await fetch(
-        "http://localhost/api-servilex/public/api/cards",
+        `${import.meta.env.VITE_URL_API}/api-servilex/public/api/cards`,
         {
           method: "GET",
           headers: {
@@ -132,7 +133,8 @@ export const ListUsers = () => {
                 <td>{user.lastname}</td>
                 <td>
                   <span className="badge text-bg-secondary">
-                    {user.number_card}
+                    <i className="fa-solid fa-credit-card"></i>{" "}
+                    {addSpaceText(user.number_card)}
                   </span>
                 </td>
                 <td>

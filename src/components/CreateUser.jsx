@@ -63,7 +63,7 @@ export const CreateUser = () => {
   const postCard = async (data) => {
     try {
       const response = await fetch(
-        "http://localhost/api-servilex/public/api/cards",
+        `${import.meta.env.VITE_URL_API}/api-servilex/public/api/cards`,
         {
           method: "POST",
           headers: {

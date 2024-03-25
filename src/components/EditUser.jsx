@@ -77,7 +77,9 @@ export const EditUser = ({ show, rowData, handleClose }) => {
   const updateCard = async (data) => {
     try {
       const response = await fetch(
-        `http://localhost/api-servilex/public/api/cards/${data.id}`,
+        `${import.meta.env.VITE_URL_API}/api-servilex/public/api/cards/${
+          data.id
+        }`,
         {
           method: "PUT",
           headers: {

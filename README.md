@@ -1,8 +1,14 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# RENE LOZANO
 
-Currently, two official plugins are available:
+# Pasos para levantar el proyecto FRONTEND
+1. Decargar las librerias con yarn install
+2. Revisar la URL de la API REST (revisar las variables de ENTORNO)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+# Pasos para levantar el proyecto BACKEND
+1. Decargar las librerias con composer
+2. Revisar la URL de la API REST (revisar las variables de ENTORNO)
+3. Utilizar el entorno XAMP
+4. Crear la base de datos "servilex" en MYSQL y correr las migraciones
